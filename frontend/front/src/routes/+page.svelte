@@ -2,7 +2,9 @@
 	import Saos from 'saos';
 	import { onMount, tick } from 'svelte';
 	import { Jumper } from 'svelte-loading-spinners';
-
+	import axios from 'axios';
+	// @ts-ignore
+	import { saveAs } from 'file-saver';
 	// @ts-ignore
 	import { Plyr } from 'svelte-plyr';
 	let player: { play: () => any; pause: () => any };
@@ -10,7 +12,7 @@
 	let text: String;
 	let textarea: HTMLTextAreaElement;
 	export let videoId = 'wmG-Ip9foEk';
-
+	let statusMessage;
 	function logEvent(event: any) {
 		console.log(event);
 	}
@@ -35,23 +37,28 @@
 				event.preventDefault();
 				is_enter_down = true;
 				loading = true;
-				const url = 'http://0.0.0.0:5001/post';
-				const myobj = { description: text };
+				try {
+					async function fetchVideo() {
+						const response = await axios.post(
+							'http://0.0.0.0:5001/post',
+							{ text },
+							{
+								responseType: 'blob' // Ensure the response is in Blob format
+							}
+						);
 
-				fetch(url, {
-					method: 'POST',
-					headers: {
-						'Content-Type': 'application/json'
-					},
-					body: JSON.stringify(myobj)
-				})
-					.then((response) => response.json())
-					.then((data) => {
-						console.log(data);
-					})
-					.catch((error) => {
-						console.error('Error:', error);
-					});
+						if (response.status === 200) {
+							const blob = new Blob([response.data], { type: 'video/mp4' });
+							saveAs(blob, 'received_video.mp4');
+							statusMessage = 'Video saved as received_video.mp4';
+						} else {
+							statusMessage = `Failed to retrieve video. Status code: ${response.status}`;
+						}
+					}
+				} catch (error) {
+					// @ts-ignore
+					statusMessage = `Error: ${error.message}`;
+				}
 				setTimeout(function () {
 					loading = false;
 				}, 1000);
