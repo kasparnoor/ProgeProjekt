@@ -3,8 +3,9 @@
 	import { onMount, tick } from 'svelte';
 	import { Jumper } from 'svelte-loading-spinners';
 	import axios from 'axios';
-	// @ts-ignore
-	import { saveAs } from 'file-saver';
+	import fileSaver from 'file-saver';
+
+	const { saveAs } = fileSaver;
 	// @ts-ignore
 	import { Plyr } from 'svelte-plyr';
 	let player: { play: () => any; pause: () => any };
