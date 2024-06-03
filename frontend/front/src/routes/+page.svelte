@@ -12,8 +12,25 @@
 	let loading = false;
 	let text: String;
 	let textarea: HTMLTextAreaElement;
-	export let videoId = 'wmG-Ip9foEk';
+	export const videoId = 'wmG-Ip9foEk';
 	let statusMessage;
+						async function fetchVideo() {
+						const response = await axios.post(
+							'http://192.168.1.205:5001/post',
+							{ text },
+							{
+								responseType: 'blob' // Ensure the response is in Blob format
+							}
+						);
+
+						if (response.status === 200) {
+							const blob = new Blob([response.data], { type: 'video/mp4' });
+							saveAs(blob, 'received_video.mp4');
+							statusMessage = 'Video saved as received_video.mp4';
+						} else {
+							statusMessage = `Failed to retrieve video. Status code: ${response.status}`;
+						}
+					}
 	function logEvent(event: any) {
 		console.log(event);
 	}
@@ -38,24 +55,8 @@
 				event.preventDefault();
 				is_enter_down = true;
 				loading = true;
-				try {
-					async function fetchVideo() {
-						const response = await axios.post(
-							'http://0.0.0.0:5001/post',
-							{ text },
-							{
-								responseType: 'blob' // Ensure the response is in Blob format
-							}
-						);
-
-						if (response.status === 200) {
-							const blob = new Blob([response.data], { type: 'video/mp4' });
-							saveAs(blob, 'received_video.mp4');
-							statusMessage = 'Video saved as received_video.mp4';
-						} else {
-							statusMessage = `Failed to retrieve video. Status code: ${response.status}`;
-						}
-					}
+				 try {
+				  fetchVideo()
 				} catch (error) {
 					// @ts-ignore
 					statusMessage = `Error: ${error.message}`;
