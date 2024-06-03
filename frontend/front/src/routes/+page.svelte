@@ -52,6 +52,10 @@
 					.catch((error) => {
 						console.error('Error:', error);
 					});
+				setTimeout(function () {
+					loading = false;
+				}, 1000);
+
 				break;
 		}
 	}
@@ -103,7 +107,7 @@
 	{:else if loading}
 		<Jumper size="120" color="#10172A" unit="px" duration="3s" />
 	{:else}
-		<h1>Video alla laetud.</h1>
+		<h1 class="text-3xl">Video alla laadimine algas...</h1>
 	{/if}
 </div>
 
