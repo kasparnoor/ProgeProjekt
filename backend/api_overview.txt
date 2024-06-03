@@ -1,0 +1,31 @@
+apil on järgmised endopoindid:
+ping -- annab sulle tagasi pingi sellelts masinalt
+näide: 
+
+import requests
+res = requests.get(url='http://194.106.100.185:8888/ping')
+print(res.json())
+
+files -- annab sulle kõik filenamed mis on tulemused kaustas
+
+näide: 
+
+import requests
+res = requests.get(url='http://194.106.100.185:8888/files')
+print(res.json())
+
+get_file -- argumentidena on 'description = prompt millest video tehakse' ja 'filename=faili nimi mille ta sulle tagasi annab'
+
+näide:
+import requests
+res = requests.get(url='http://194.106.100.185:8888/get_file/small_man_walking_on_the_stree.mp4')
+
+
+generate_new_video -- gnereerib sinu prompti alusel uue video. sisendiks on prompt description väljal ja filename mis on väljastatud faili nimi
+
+import requests
+res = requests.post(url='http://194.106.100.185:8888/post',
+                   json={'description': 'small man walking on the street',
+                         'filename': 'small_man_walking_on_the_street'})
+print(res)
+

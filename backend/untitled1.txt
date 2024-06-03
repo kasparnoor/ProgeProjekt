@@ -1,0 +1,3 @@
+# use the terminal directly - no jupyterhub
+source venv/local/bin/activate
+pip3 install --ignore-installed --no-cache keras
