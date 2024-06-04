@@ -7,7 +7,7 @@ Meie projekti eesmärk on teha videote genereerimine AI toel ligipääsetavamaks
 Minge soovitud kausta ja tehke terminalis käsk `git clone https://github.com/kasparnoor/ProgeProjekt.git`
 Edasi võite soovikorral teha sinna ka virtualenvi käsuga `virtualenv venv`
 Järgnevalt pange terminali `pip3 install -r requirements.txt`
-Enne jooksutamist peab tegema uue kataloogi `checkpoints` ja lisama sinna faili mille saab alla tõmmata siit: 
+Enne jooksutamist peab tegema uue kataloogi `checkpoints` ja lisama sinna faili mille saab alla tõmmata siit: https://huggingface.co/VideoCrafter/Text2Video-1024/blob/main/model.ckpt
 Selleks et koodi jooksutada pange terminali `python3 gradio_app.py`
 # Backend
 Backend on koostatud pythoni programmeerimise keeles ning jookseb välise serveri peal. 
