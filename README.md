@@ -3,7 +3,11 @@
 Meie projekti eesmärk on teha videote genereerimine AI toel ligipääsetavamaks. Selleks seome AI mudeli meie endi kirjutatud API ja frontendi, kust inimesed saavad videoid genereerida
 
 ## Kuidas installida?
-
+**Koodi jooksutamiseks on vaja ngraafika kaarti soovitatavalt selline millel on 16gb vrammi.** 
+Minge soovitud kausta ja tehke terminalis käsk `git clone https://github.com/kasparnoor/ProgeProjekt.git`
+Edasi võite soovikorral teha sinna ka virtualenvi käsuga `virtualenv venv`
+Järgnevalt pange terminali `pip3 install -r requirements.txt`
+Selleks et koodi jooksutada pange terminali `python3 gradio_app.py`
 # Backend
 
 # Frontend
