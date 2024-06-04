@@ -9,7 +9,7 @@ Edasi võite soovikorral teha sinna ka virtualenvi käsuga `virtualenv venv`
 Järgnevalt pange terminali `pip3 install -r requirements.txt`
 Selleks et koodi jooksutada pange terminali `python3 gradio_app.py`
 # Backend
-
+Backend on koostatud pythoni programmeerimise keeles ning jookseb välise serveri peal. 
 # Frontend
 
 Kirjutatud Svelte raamistikuga Javascriptis (HTML ja CSS3 ka ikka)
